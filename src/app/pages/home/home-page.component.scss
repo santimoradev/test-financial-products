@@ -29,6 +29,12 @@
 }
 .btn-primary {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
+  line-height: 2.25rem;
+  text-decoration: none;
+  &:visited {
+    color: var(--secondary-color)
+  }
 }
 
 .card-table {

@@ -6,7 +6,7 @@
       (input)="state.search.set(txtSearch.value)"
      />
   </div>
-  <button class="button btn-primary">Agregar</button>
+  <a class="button btn-primary" routerLink="agregar-producto">Agregar</a>
 </aside>
 <section class="card-table">
   <product-list [items]="state.filtered()" />

@@ -2,6 +2,7 @@ import { ProductsService } from '@/app/shared/services/products.service';
 import { Component, computed, inject } from '@angular/core';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HomeState } from './home-page.state';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home-page-component',
@@ -9,6 +10,7 @@ import { HomeState } from './home-page.state';
   templateUrl: 'home-page.component.html',
   imports: [
     ProductListComponent,
+    RouterLink
   ],
   providers: [
     HomeState
