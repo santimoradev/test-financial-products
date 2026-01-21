@@ -1,132 +1,27 @@
 <aside class="toolbar">
   <div class="search">
-    <input placeholder="Search..." />
+    <input placeholder="Search..."
+      [value]="state.search()"
+      #txtSearch
+      (input)="state.search.set(txtSearch.value)"
+     />
   </div>
   <button class="button btn-primary">Agregar</button>
 </aside>
 <section class="card-table">
-  <table>
-    <thead>
-      <th>Logo</th>
-      <th>Nombre del producto</th>
-      <th>Descripción</th>
-      <th>Fecha de liberación</th>
-      <th>Fecha de reestructuración</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          #
-        </td>
-        <td>
-          Nombre del producto
-        </td>
-        <td>
-          Descripción
-        </td>
-        <td>
-          01/01/2000
-        </td>
-        <td>
-          01/01/2001
-        </td>
-        <button>
-          ...
-        </button>
-      </tr>
-      <tr>
-        <td>
-          #
-        </td>
-        <td>
-          Nombre del producto
-        </td>
-        <td>
-          Descripción
-        </td>
-        <td>
-          01/01/2000
-        </td>
-        <td>
-          01/01/2001
-        </td>
-        <button>
-          ...
-        </button>
-      </tr>
-      <tr>
-        <td>
-          #
-        </td>
-        <td>
-          Nombre del producto
-        </td>
-        <td>
-          Descripción
-        </td>
-        <td>
-          01/01/2000
-        </td>
-        <td>
-          01/01/2001
-        </td>
-        <button>
-          ...
-        </button>
-      </tr>
-      <tr>
-        <td>
-          #
-        </td>
-        <td>
-          Nombre del producto
-        </td>
-        <td>
-          Descripción
-        </td>
-        <td>
-          01/01/2000
-        </td>
-        <td>
-          01/01/2001
-        </td>
-        <button>
-          ...
-        </button>
-      </tr>
-      <tr>
-        <td>
-          #
-        </td>
-        <td>
-          Nombre del producto
-        </td>
-        <td>
-          Descripción
-        </td>
-        <td>
-          01/01/2000
-        </td>
-        <td>
-          01/01/2001
-        </td>
-        <button>
-          ...
-        </button>
-      </tr>
-    </tbody>
-  </table>
+  <product-list [items]="state.filtered()" />
   <section class="footer">
     <span class="results">
-      5 Resultados
+      {{ state.getTotals() }}
     </span>
+
     <aside class="per-page">
-      <select>
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-        <option>50</option>
+      <select
+        #perPageSelect
+        (change)="state.onSetPerPage(perPageSelect.value)">
+        @for( item of state.optionsPerPage; track item ) {
+          <option [value]="item">{{item}}</option>
+        }
       </select>
     </aside>
   </section>

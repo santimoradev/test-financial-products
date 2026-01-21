@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <th>Logo</th>
+    <th>Nombre del producto</th>
+    <th>Descripción</th>
+    <th>Fecha de liberación</th>
+    <th>Fecha de reestructuración</th>
+    <th></th>
+  </thead>
+  <tbody>
+  @for ( product of items(); track product.id ) {
+    <tr>
+      <td>
+        {{ product.id }}
+      </td>
+      <td>
+        {{ product.name }}
+      </td>
+      <td>
+        {{ product.description }}
+      </td>
+      <td>
+        {{ product.dateRelease | date:'dd/MM/yyyy' }}
+      </td>
+      <td>
+        {{ product.dateRevision | date:'dd/MM/yyyy' }}
+      </td>
+      <button>
+        ...
+      </button>
+    </tr>
+  }
+  </tbody>
+</table>
