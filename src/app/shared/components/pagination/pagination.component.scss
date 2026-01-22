@@ -1,0 +1,24 @@
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.paginate-button-base {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+button {
+  @extend .paginate-button-base;
+  background-color: transparent;
+  border: 0.0625rem solid var(--border-color);
+  &:disabled {
+    opacity: 0.875rem;
+  }
+}
+span {
+  @extend .paginate-button-base;
+}

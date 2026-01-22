@@ -1,4 +1,4 @@
 <section class="container">
   <h3 class="title">Formulario de Registro</h3>
-  <form-product />
+  <form-product (onSubmitForm)="onCreateProduct($event)" [newRecord]="true" />
 </section>

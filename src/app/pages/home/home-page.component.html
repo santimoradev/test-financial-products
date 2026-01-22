@@ -3,7 +3,7 @@
     <input placeholder="Search..."
       [value]="state.search()"
       #txtSearch
-      (input)="state.search.set(txtSearch.value)"
+      (input)="state.onSearchText(txtSearch.value)"
      />
   </div>
   <a class="button btn-primary" routerLink="agregar-producto">Agregar</a>
@@ -12,9 +12,9 @@
   <product-list [items]="state.filtered()" />
   <section class="footer">
     <span class="results">
-      {{ state.getTotals() }}
+      {{ state.getTotals() }} de {{ state.items().length }}
     </span>
-
+    <pagination-bp [total]="state.totalPages()" [page]="state.currentPage()" (onChangePage)="state.changePage($event)"></pagination-bp>
     <aside class="per-page">
       <select
         #perPageSelect

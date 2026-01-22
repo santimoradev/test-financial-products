@@ -4,10 +4,11 @@
   background: var(--background);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   gap: 1rem;
   .content {
     width: 100%;
-    max-width: 80rem;
+    max-width: 70rem;
     margin: 0 auto;
   }
 }

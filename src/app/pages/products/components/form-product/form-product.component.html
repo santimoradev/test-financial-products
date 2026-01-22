@@ -24,22 +24,31 @@
     <div class="form-field">
       <label>Logo</label>
       <input type="text"  formControlName="logo"  />
+      @if (form.controls.logo.invalid && form.controls.logo.touched) {
+        <span class="error">Logo es requerido</span>
+      }
     </div>
     <div class="form-field">
       <label>Fecha de liberación</label>
       <input type="date" [min]="minDate" formControlName="date_release"  />
+      @if (form.controls.date_release.invalid && form.controls.date_release.touched) {
+        <span class="error">Fecha es requerido</span>
+      }
     </div>
     <div class="form-field">
       <label>Fecha de Revisión</label>
-      <input type="date"  formControlName="date_revision" />
+      <input type="date"  formControlName="date_revision" readonly />
+      @if (form.controls.date_revision.invalid && form.controls.date_revision.touched) {
+        <span class="error">Fecha es requerido</span>
+      }
     </div>
   </div>
   <div class="actions">
-    <button type="button" (click)="reset()" class="reset">
-      Reiniciar
-    </button>
-    <button type="submit" class="submit">
-      Enviar
-    </button>
+    @if ( newRecord() ) {
+      <button-bp type="button" (click)="reset()">Reiniciar</button-bp>
+    } @else {
+      <button-bp routerLink="/">Regresar</button-bp>
+    }
+    <button-bp type="submit" nameClass="primary">Enviar</button-bp>
   </div>
 </form>

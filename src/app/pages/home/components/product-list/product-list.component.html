@@ -1,34 +1,68 @@
-<table>
-  <thead>
-    <th>Logo</th>
-    <th>Nombre del producto</th>
-    <th>Descripción</th>
-    <th>Fecha de liberación</th>
-    <th>Fecha de reestructuración</th>
-    <th></th>
-  </thead>
-  <tbody>
-  @for ( product of items(); track product.id ) {
-    <tr>
-      <td>
-        {{ product.id }}
-      </td>
-      <td>
-        {{ product.name }}
-      </td>
-      <td>
-        {{ product.description }}
-      </td>
-      <td>
-        {{ product.dateRelease | date:'dd/MM/yyyy' }}
-      </td>
-      <td>
-        {{ product.dateRevision | date:'dd/MM/yyyy' }}
-      </td>
-      <button>
-        ...
-      </button>
-    </tr>
+<div class="table-content">
+  @if ( state.isLoading() ) {
+    <div class="loader">
+      <spinner />
+    </div>
   }
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <th>Logo</th>
+      <th>Nombre del producto</th>
+      <th>Descripción</th>
+      <th>Fecha de liberación</th>
+      <th>Fecha de reestructuración</th>
+      <th></th>
+    </thead>
+    <tbody>
+    @for ( product of items(); track product.id;) {
+      <tr>
+        <td>
+          <img class="logo" [src]="product.logo" />
+        </td>
+        <td>
+          {{ product.id }}
+          {{ product.name }}
+        </td>
+        <td>
+          {{ product.description }}
+        </td>
+        <td>
+          {{ product.dateRelease | date:'dd/MM/yyyy' }}
+        </td>
+        <td>
+          {{ product.dateRevision | date:'dd/MM/yyyy' }}
+        </td>
+        <td class="actions">
+          <button class="btn-options" (click)="state.toggleDropdown(product.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+          </button>
+          @if ( state.openRowId() === product.id ) {
+            <div class="dropdown-menu" >
+              <button class="dropdown-option" (click)="state.goEdit(product.id)">
+                Editar producto
+              </button>
+              <button class="dropdown-option" (click)="state.openDelete(product)">
+                Eliminar producto
+              </button>
+            </div>
+          }
+        </td>
+      </tr>
+    }
+    @if ( state.isEmpty() ) {
+      <tr>
+        <td colspan="6">
+          <p>No existen registros disponibles</p>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+  @if ( state.selected() ) {
+    <product-delete
+      [product]="state.selected()"
+      (onCancelDelete)="state.closeDelete()"
+      (onConfirmDelete)="state.confirmDelete()"
+    ></product-delete>
+  }
+</div>

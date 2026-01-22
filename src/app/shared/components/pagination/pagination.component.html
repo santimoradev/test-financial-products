@@ -1,5 +1,13 @@
 <div class="pagination">
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
+  <button
+    (click)="goPrev()"
+    [disabled]="isFirstPage()"
+    >
+   <
+  </button>
+  <span>{{page()}}</span>
+  <button
+    (click)="goNext()"
+    [disabled]="isLastPage()"
+  > > </button>
 </div>

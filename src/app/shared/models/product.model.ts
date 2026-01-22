@@ -1,4 +1,4 @@
-import { ProductDTO } from "../interfaces/product";
+import { CreateProductRequest, ProductDTO } from "../interfaces/product";
 
 export class Product {
   constructor(
@@ -20,8 +20,18 @@ export class Product {
       dto.name,
       dto.description,
       dto.logo,
-      new Date(dto.date_release),
-      new Date(dto.date_revision)
+      new Date(dto.date_release + 'T00:00:00'),
+      new Date(dto.date_revision + 'T00:00:00')
     );
+  }
+  static createFromJson(dto: Partial<ProductDTO>) : CreateProductRequest {
+    return {
+      id: `${dto.id}`,
+      name: `${dto.name}`,
+      description: `${dto.description}`,
+      logo: `${dto.logo}`,
+      date_release: `${dto.date_release}`,
+      date_revision: `${dto.date_revision}`,
+    }
   }
 }

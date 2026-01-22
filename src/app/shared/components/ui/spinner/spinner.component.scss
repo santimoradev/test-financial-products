@@ -1,0 +1,27 @@
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  align-items: center;
+  gap: 0.5rem;
+  .spinner {
+    border: 0.25rem solid var(--border-color);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    animation: spin 1s linear infinite;
+  }
+  span {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-color);
+  }
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

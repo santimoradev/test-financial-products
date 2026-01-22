@@ -1,0 +1,7 @@
+<section class="container">
+  <h3 class="title">Editar producto</h3>
+  <form-product
+    (onSubmitForm)="state.onUpdateProduct($event)"
+    [formData]="state.formData()"
+  />
+</section>

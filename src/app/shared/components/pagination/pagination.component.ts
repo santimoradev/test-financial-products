@@ -1,12 +1,30 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
-  selector: 'pagination-component',
+  selector: 'pagination-bp',
   styleUrl: './pagination.component.scss',
   templateUrl: 'pagination.component.html'
 })
 
 export class PaginationComponent {
   total = input.required<number>()
-  currentPage = signal<number>(1)
+  page = input.required<number>()
+
+  onChangePage = output<number>()
+
+  isFirstPage() {
+    return this.page() <= 1
+  }
+  isLastPage() {
+    return this.total() <= this.page()
+  }
+  goPrev( ){
+    if ( this.isFirstPage() ) return
+    this.onChangePage.emit( this.page() - 1 )
+  }
+
+  goNext( ){
+    if ( this.isLastPage() ) return
+    this.onChangePage.emit( this.page() + 1)
+  }
 }
