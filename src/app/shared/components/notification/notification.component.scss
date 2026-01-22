@@ -1,0 +1,29 @@
+.notification {
+  position: fixed;
+  background-color: var(--primary-color);
+  border: 0.0625rem solid var(--border-color);
+  padding: 1rem;
+  color: var(--secondary-color);
+  padding-right: 3rem;
+  max-width: 20rem;
+  top: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba($color: #000000, $alpha: 0.33);
+  right: 2rem;
+  p {
+    color: var(--text-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  button {
+    position: absolute;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: 700;
+    height: 2rem;
+    width: 2rem;
+    border: 0 none transparent;
+    top: 0.5rem;
+    right: 0;
+  }
+}

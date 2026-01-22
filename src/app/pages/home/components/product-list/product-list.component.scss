@@ -66,6 +66,7 @@ table {
     top: 95%;
     z-index: 1;
     flex-direction: column;
+    box-shadow: 0.125rem 0.125rem 0.25rem rgba($color: #000000, $alpha: 0.33);
     .dropdown-option {
       width: 100%;
       background-color: transparent;

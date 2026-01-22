@@ -2,11 +2,13 @@ import { computed, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ProductsService } from "@shared/services/products.service";
 import { Product } from "@shared/models/product.model";
+import { NotificationService } from "@/app/shared/services/notification.service";
 
 @Injectable()
 export class ProductListState {
   router = inject(Router)
   productService = inject(ProductsService)
+  notify = inject(NotificationService)
 
   selected = signal<Product | null>(null)
   openRowId = signal<string | null>(null)
@@ -35,10 +37,15 @@ export class ProductListState {
     this.selected.set(null)
   }
   async confirmDelete() {
-    const productId = this.selected()?.id
-    if ( !productId ) return;
-    await this.productService.delete(productId)
-    this.productService.getRows()
-    this.closeDelete()
+    try {
+      const productId = this.selected()?.id
+      if ( !productId ) return;
+      const response = await this.productService.delete(productId)
+      this.notify.setMessage(response.message)
+      this.productService.getRows()
+      this.closeDelete()
+    } catch (_e) {
+      this.notify.setGlobalError()
+    }
   }
 }

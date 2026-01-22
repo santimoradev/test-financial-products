@@ -1,0 +1,6 @@
+@if ( notify.hasMessage() ) {
+  <div class="notification">
+    <p>{{ notify.message() }}</p>
+    <button (click)="close()"> x </button>
+  </div>
+}

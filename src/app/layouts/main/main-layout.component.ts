@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { NotificationComponent } from '@shared/components/notification/notification.component';
 
 @Component({
   selector: 'main-layout-component',
@@ -9,6 +10,7 @@ import { HeaderComponent } from '@shared/components/header/header.component';
   imports: [
     HeaderComponent,
     RouterOutlet,
+    NotificationComponent
   ]
 })
 

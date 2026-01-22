@@ -82,6 +82,5 @@ export class FormProductComponent  {
 
     const product = Product.createFromJson(this.form.getRawValue());
     this.onSubmitForm.emit(product);
-    this.form.reset()
   }
 }
