@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '@shared/models/product.model';
 import { CreateProductRequest, ProductDTO, } from '@shared/interfaces/product';
 import { ButtonBpComponent } from '@shared/components/ui/button/button.component';
+import { ProductsService } from '@shared/services/products.service';
 
 @Component({
   selector: 'form-product',
@@ -12,17 +13,18 @@ import { ButtonBpComponent } from '@shared/components/ui/button/button.component
   imports: [ RouterLink, ReactiveFormsModule, ButtonBpComponent ]
 })
 
-export class FormProductComponent  implements OnInit  {
+export class FormProductComponent  {
   private fb = inject(FormBuilder)
   onSubmitForm = output<CreateProductRequest>();
   newRecord = input<boolean>(false)
   formData = input<ProductDTO | null>()
 
+  productService = inject(ProductsService)
+
   minDate: string = new Date().toISOString().slice(0, 10);
 
 
   form = this.fb.nonNullable.group({
-    // TODO: verificar ID del producto que no exista antes de crearlo
     id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
     name: ['',[ Validators.required, Validators.minLength(5), Validators.maxLength(100) ]],
     description: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
@@ -48,24 +50,26 @@ export class FormProductComponent  implements OnInit  {
       }
     })
   }
-
-  ngOnInit(): void {
-    this.onReleaseDateChange();
-  }
-
-  onReleaseDateChange(): void {
-    this.form.get('date_release')?.valueChanges.subscribe(value => {
+  onChangeRevision() {
+    const value = this.form.get('date_release')?.value
       if (value) {
-        // TODO: date fns or dayjs
         const releaseDate = new Date(value);
         const revisionDate = new Date(releaseDate);
         revisionDate.setFullYear(releaseDate.getFullYear() + 1);
         const formattedDate = revisionDate.toISOString().split('T')[0];
         this.form.controls.date_revision.setValue(formattedDate);
       }
-    });
   }
 
+  async onVerificateId() {
+    const value = this.form.get('id')?.value
+      if ( value && this.newRecord() ) {
+        const hasDuplicate = await this.productService.verificationId(value)
+        if ( hasDuplicate ) {
+          this.form.get('id')?.setErrors({ 'duplicate': true })
+        }
+      }
+  }
   reset() {
     this.form.reset();
   }
@@ -75,6 +79,7 @@ export class FormProductComponent  implements OnInit  {
       this.form.markAllAsTouched();
       return;
     }
+
     const product = Product.createFromJson(this.form.getRawValue());
     this.onSubmitForm.emit(product);
     this.form.reset()

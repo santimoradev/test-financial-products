@@ -38,6 +38,7 @@ export class HomeState {
   }
   onSetPerPage( count: string ) {
     this.perPage.set(Number(count))
+    this.currentPage.set( 1 )
   }
 
   getTotals() {

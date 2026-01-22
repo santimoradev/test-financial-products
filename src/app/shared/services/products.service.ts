@@ -44,6 +44,15 @@ export class ProductsService   {
     return response
 
   }
+
+  async verificationId(productId: string) {
+    this.isLoading.set(true)
+    const response = await firstValueFrom(
+      this.http.get<boolean>(`${this.apiUrl}/verification/${productId}`)
+    )
+    this.isLoading.set(false)
+    return response
+  }
   async save(payload: CreateProductRequest) {
     return await firstValueFrom(
       this.http.post<CreateProductResponse>(this.apiUrl, payload)

@@ -1,6 +1,6 @@
 <div class="modal-backdrop" (click)="onCancelDelete.emit()"></div>
 <div class="modal">
-  <h4>¿Estás seguro de eliminar el producto {{ product.name }}?</h4>
+  <h4>¿Estás seguro de eliminar el producto {{ product()?.name }}?</h4>
   <hr />
   <div class="actions">
     <button-bp  (click)="onCancelDelete.emit()">Cancelar</button-bp>

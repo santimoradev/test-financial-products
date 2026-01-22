@@ -2,10 +2,15 @@
   <div class="fields">
     <div class="form-field">
       <label>ID</label>
-      <input type="text" formControlName="id" />
-      @if (form.controls.id.invalid && form.controls.id.touched) {
+      <input type="text" formControlName="id" (blur)="onVerificateId()" />
+      <div>
+      @if (form.controls.id.invalid && form.controls.id.touched && !form.controls.id.hasError('duplicate')) {
         <span class="error">ID no válido!</span>
       }
+      @if (form.controls.id.hasError('duplicate') && form.controls.id.touched) {
+        <span class="error">ID duplicado</span>
+      }
+      </div>
     </div>
     <div class="form-field">
       <label>Nombre</label>
@@ -30,7 +35,7 @@
     </div>
     <div class="form-field">
       <label>Fecha de liberación</label>
-      <input type="date" [min]="minDate" formControlName="date_release"  />
+      <input type="date" [min]="minDate" formControlName="date_release"  (change)="onChangeRevision()" />
       @if (form.controls.date_release.invalid && form.controls.date_release.touched) {
         <span class="error">Fecha es requerido</span>
       }
