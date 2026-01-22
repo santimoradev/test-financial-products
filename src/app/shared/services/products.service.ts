@@ -14,10 +14,10 @@ export class ProductsService   {
   private readonly apiUrl = `${environment.apiUrl}/bp/products`
   private http = inject(HttpClient)
 
-  totals = computed( () => this.products().length )
-  product = signal<ProductDTO | null>(null)
-  products = signal<Product[]>([])
-  isLoading = signal<boolean>(true)
+  totals = computed( () => this.products().length );
+  product = signal<ProductDTO | null>(null);
+  products = signal<Product[]>([]);
+  isLoading = signal<boolean>(true);
 
   async getRows() {
     this.isLoading.set(true)
