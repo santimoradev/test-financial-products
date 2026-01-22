@@ -10,50 +10,57 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+# 🚀 Angular 21 Technical Test Project
+Este proyecto fue desarrollado como parte de una prueba técnica, utilizando las últimas funcionalidades de Angular 21 para ofrecer una interfaz moderna, eficiente y escalable.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+# 🛠️ Tecnologías Utilizadas
+- Framework: Angular 21
+- Estilos: SCSS (Sass)
+- Entorno de ejecución: Node.js (v20 o superior)
+- Gestor de paquetes: npm
 
-```bash
-ng generate component component-name
+# 📋 Requisitos Previos
+Asegúrate de tener instaladas las siguientes herramientas en tu máquina local:
+
+> Node.js: Versión 20.x o superior.
+
+Angular CLI: Se recomienda tener instalada la versión global compatible con Angular 21.
+
+```
+Bash
+npm install -g @angular/cli
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+# ⚙️ Instalación y Ejecución
+Sigue estos pasos para poner en marcha el proyecto localmente:
 
-```bash
-ng generate --help
+### 1. Clonar el repositorio
+```
+Bash
+git clone <URL_DE_TU_REPOSITORIO>
+cd <NOMBRE_DE_LA_CARPETA>
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
+### 2. Instalar dependencias
+Utiliza npm para instalar todas las librerías necesarias:
+```
+Bash
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+### 3. Levantar el servidor de desarrollo
+Ejecuta el siguiente comando para iniciar la aplicación:
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+Bash
+ng serve
 ```
+### 4. Acceder a la aplicación
+Una vez finalizada la compilación, abre tu navegador en:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> http://localhost:4200
 
-## Additional Resources
+# 🔌 Backend y API
+Este proyecto consume los servicios del Backend proporcionado para la prueba técnica.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> [!IMPORTANT] Asegúrate de que el servidor backend esté en ejecución para que el servicio de Angular pueda obtener y procesar los datos correctamente. Si es necesario configurar una URL base específica, puedes encontrarla en el archivo src/environments/environment.ts.
